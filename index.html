@@ -10,15 +10,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
   <body>
-    <div class="main-container">
-      <div class="main-wrapper">
+    <div class="main-container" id="main-container">
+      <div class="main-wrapper" id="main-wrapper">
         <div class="main-title">
           <h1>Why So Gastos?</h1>
           <p>" Daily expense tracker by Rsjr. "</p>
 
         </div>
         <div class="main-buttons">
-          <button onclick=""> Log Expense</button>
+          <button onclick="logExpense()"> Log Expense</button>
           <button onclick=""> Track Expenses</button>
 
 
@@ -27,12 +27,27 @@
 
       </div>
   </div>
-  <div class="tape-effect">
-    </div>
+  <div id="full-screen-overlay-one">
+  <div id="back-button" onclick="backToMain()">
+    <button> Back</button>
+
+  </div>
+  <div id="overlay-log-one-box">
+    <div class="overlay-log-one-title">
+      <h1>= Log Expense: =</h1>
+</div>
+<div class="overlay-log-one-purpose">
+  <p>  Describe Gastos: </p>
+  <input type="text" placeholder="Input Gastos details...">
+  
+</div>
+
+
+  </div>
 
 
 
-
+  </div>
     <script src="zcript.js"></script>
   </body>
   <footer>

@@ -17,7 +17,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+    max-width: 430px;
+    margin: 0 auto;
   ;
 
 
@@ -195,9 +196,10 @@ border-radius: 10px;
 
 .enter-purpose  {
 position: absolute;
-bottom: 353.5px;
-right: 65px;
+  align-items: flex-start;
 background-color: white;
+margin-top: 36px;
+margin-left: 180px;
 padding: 7px;
 border-radius: 10px;
 
@@ -259,9 +261,11 @@ border-radius: 10px;
 }
 
 .enter-price {
+  display: flex;
+  align-items: flex-start;
   position: absolute;
-  bottom: 32.7vh;
-  right: 8.7vh;
+margin-top: 36px;
+margin-left: 180px;
   background-color: white;
 padding: 7px;
 border-radius: 10px;

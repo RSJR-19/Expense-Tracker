@@ -26,3 +26,20 @@ getMainContainer.style.display = "flex";
 }
 
 
+function enterPurpose() {
+purposeInputValue = getPurposeInput.value;
+getPurposeInput.style.border = "3px solid black";
+if (purposeInputValue !== ""){
+isPurposeGiven = true;
+getPriceInput.focus();
+}
+else {
+getPurposeInput.placeholder = `Please input valid detail * `
+getPurposeInput.style.border = "3px solid red";
+
+
+}}
+
+getPurposeInput.addEventListener("focus", () => {
+  getPurposeInput.style.border = "3px solid black";
+});

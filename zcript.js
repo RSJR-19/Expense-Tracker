@@ -40,6 +40,41 @@ getPurposeInput.style.border = "3px solid red";
 
 }}
 
-getPurposeInput.addEventListener("focus", () => {
+getPurposeInput.addEventListener("keydown", function (event) {
+if (event.key === "Enter") {
+  enterPurpose()
+getPurposeInput.blur()
+}});
+
+
+
+function enterPrice() {
+priceInputValue = getPriceInput.value;
+getPriceInput.style.border = "3px black solid";
+if(priceInputValue < 0){
+  isPriceGiven = true;
+}
+else {
+  getPriceInput.placeholder = `Please input valid amount`;
+  getPriceInput.style.border = "3px red solid";
+}
+
+
+
+
+}
+
+getPriceInput.addEventListener("keydown", function (event) {
+  if (event.key = "Enter") {
+    enterPrice();
+    getPriceInput.blur();
+  }});
+  
+  getPurposeInput.addEventListener("focus", () => {
   getPurposeInput.style.border = "3px solid black";
+});
+
+
+  getPriceInput.addEventListener("focus", () => {
+  getPriceInput.style.border = "3px solid black";
 });

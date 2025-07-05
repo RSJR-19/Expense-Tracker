@@ -152,7 +152,7 @@ transform: translateY(2px);
 
 #overlay-log-one-box {
 height: 420px;
-width: 335px;
+width: 340px;
 border: 4px black solid;
 display: flex;
 flex-direction: column;
@@ -200,7 +200,7 @@ border-radius: 10px;
 position: absolute;
   align-items: flex-start;
 background-color: white;
-margin-top: 40px;
+margin-top: 40.5px;
 margin-left: 180px;
 border-radius: 10px;
 
@@ -266,7 +266,7 @@ border-radius: 10px;
   display: flex;
   align-items: flex-start;
   position: absolute;
-margin-top: 40px;
+margin-top: 40.5px;
 margin-left: 180px;
   background-color: white;
 

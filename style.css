@@ -27,10 +27,12 @@ body {
 }
 
 .main-container {
-width: 300px;
+width: 330px;
+
 height: 250px;
 position: relative;
 border: 4px black solid;
+
 display: none; /*change to flex*/
 
 
@@ -149,8 +151,8 @@ transform: translateY(2px);
 
 
 #overlay-log-one-box {
-height: 400px;
-width: 320px;
+height: 420px;
+width: 335px;
 border: 4px black solid;
 display: flex;
 flex-direction: column;
@@ -198,13 +200,13 @@ border-radius: 10px;
 position: absolute;
   align-items: flex-start;
 background-color: white;
-margin-top: 36px;
+margin-top: 40px;
 margin-left: 180px;
-padding: 7px;
 border-radius: 10px;
 
 
 }
+
 
 .enter-purpose button {
 
@@ -264,10 +266,10 @@ border-radius: 10px;
   display: flex;
   align-items: flex-start;
   position: absolute;
-margin-top: 36px;
+margin-top: 40px;
 margin-left: 180px;
   background-color: white;
-padding: 7px;
+
 border-radius: 10px;
 
 }
@@ -329,5 +331,15 @@ border:2.5px black solid;
 font-weight: bold;
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
+
+}
+
+#full-screen-overlay-two {
+height: 100vh;
+width: 100vw;
+background-color: white;
+display: none;
+
+
 
 }

@@ -12,6 +12,8 @@ let isPurposeGiven = false;
 let isPriceGiven = false;
 getPriceInput.placeholder = `Input Gastos price...` ;
  getPurposeInput.placeholder = `Input Gastos details...`;
+ getPriceInput.style.border = "3px black solid";
+ getPurposeInput.style.border = "3px black solid";
 
 
 
@@ -20,6 +22,10 @@ function logExpense() {
 setTimeout(() => {
 getMainContainer.style.display = "none";
 getFullScreenOverlayOne.style.display = "flex";
+getPriceInput.placeholder = `Input Gastos price...` ;
+getPurposeInput.placeholder = `Input Gastos details...`;
+getPriceInput.style.border = "3px black solid";
+ getPurposeInput.style.border = "3px black solid";
 
 },160);
 }

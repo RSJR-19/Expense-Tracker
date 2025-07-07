@@ -124,7 +124,8 @@ flex-direction: column;
 justify-content: center;
 align-items: center ;
 gap: 20px;
-
+display: flex;
+/* change to flex */
 }
 
 
@@ -338,8 +339,11 @@ transition: all 0.1s ease-in-out;
 height: 100vh;
 width: 100vw;
 background-color: white;
-display: none;
+display: none; /*change to none */
 
 
 
 }
+
+
+

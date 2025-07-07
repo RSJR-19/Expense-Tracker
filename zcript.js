@@ -105,11 +105,26 @@ else {
 }
 }
 
-/*function logExpenseProceed(){
-if (isPurposeGiven === true && isPriceGiven == true){
+function logExpenseProceed(){
+if (isPurposeGiven === true && isPriceGiven === true){
+  getFullScreenOverlayOne.style.display = "none";
+  getFullScreenOverlayTwo.style.display = "flex";
+
+
+}
+
+else {
+  alert("bugs")
+}
+
+  if(isPurposeGiven === false){
+    getPurposeInput.focus();
+  }
+  else if (isPriceGiven === false){
+    getPriceInput.focus()
+  }
+}
 
 
 
 
-
-}*/

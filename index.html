@@ -67,8 +67,8 @@
 
     <div id="overlay-log-two-box">
       
-      <div class="confirm-title">
-        <h1>= Confirm Details: =</h1>
+      <div id="confirm-title">
+        <h1 id="confirm-details-title">= Confirm Details: =</h1>
       
 
       </div>
@@ -78,14 +78,16 @@
         <h1 id="confirm-amount">Amount</h1>
 
       </div>
-      <div class="details-space">
+      <div id="details-space">
         <h3>Gastos Details: </h3>
         <h4 id="purpose-details">details here</h4>
       </div>
 
     </div>
-    <div id="confirm-btn" onclick="confirmLog()">
-     <button> Confirm</button>
+  
+    <div id="confirm-btn" >
+     <button onclick="confirmLog()" id="confirm-log"> Confirm</button>
+     <button id="track-btn"> Track Expense</button>
 
     </div>
     

@@ -10,6 +10,11 @@ let getBackBtn = document.getElementById("back-button");
 let getConfirmAmount = document.getElementById("confirm-amount");
 let getPurposeDetails = document.getElementById("purpose-details");
 let getPurposeAmountBox = document.getElementById("amountDetailsBox");
+let getTrackBtn = document.getElementById("track-btn")
+let getConfirmBtn = document.getElementById("confirm-log");
+let getConfirmTitle = document.getElementById("confirm-title");
+let getConfirmDiv = document.getElementById("confirm-btn")
+let isConfirmed = false;
 
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -92,6 +97,7 @@ else {
   isPriceGiven = false;
   getPriceInput.placeholder = `Please input valid amount`;
   getPriceInput.style.border = "3px red solid";
+
 }
 validateProceed();
 }
@@ -145,6 +151,7 @@ else {
 
 
 function backToFirst() {
+  if (isConfirmed === false){
   setTimeout(() => {
 getFullScreenOverlayTwo.style.display = "none";
 getFullScreenOverlayOne.style.display = "flex";
@@ -153,16 +160,39 @@ getPriceInput.value = "";
 isPriceGiven = false;
 isPurposeGiven = false;
 validateProceed();
-  },160)
+  },160)}
+  else if (isConfirmed === true) {
+    setTimeout (() => {
+    getFullScreenOverlayTwo.style.display = "none";
+    getMainContainer.style.display = "flex";
+    getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
+isConfirmed = false;
+validateProceed();
+    },160)}
+
+
+
+  }
 
 
 
 
-}
+
 
 function proceedDetails() {
+  getPurposeAmountBox.style.display = "flex";
+  getPurposeAmountBox.style.flexDirection = "column";
   getConfirmAmount.innerHTML = priceInputValue;
   getPurposeDetails.innerHTML = purposeInputValue;
+  document.getElementById("confirm-details-title").innerHTML = `= Confirm Details: = `
+  getConfirmTitle.style.backgroundColor = "white";
+  getPurposeAmountBox.style.backgroundColor = "white";
+  getConfirmDiv.style.backgroundColor = "white";
+  getConfirmBtn.style.display = "block";
+  getTrackBtn.style.display = "none";
 
 
 
@@ -170,7 +200,12 @@ function proceedDetails() {
 
 function confirmLog() {
   setTimeout (() => {
-getPurposeAmountBox.display //finish this later//
+document.getElementById("confirm-details-title").innerHTML = `= Gastos Logged! = `
+getConfirmTitle.style.backgroundColor = "orange";
+getConfirmDiv.style.backgroundColor = "orange";
+getTrackBtn.style.display = "block";
+getConfirmBtn.style.display = "none";
+isConfirmed = true;
 
 
   },160)

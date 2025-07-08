@@ -38,7 +38,7 @@
 </div>
 <div class="overlay-log-one-purpose">
   <p>  Gastos details: </p>
-  <input type="text" placeholder="Input Gastos details..." id="purposeInput" maxlength="60" autocomplete="off">
+  <input type="text" placeholder="Input Gastos details..." id="purposeInput"  autocomplete="off" >
   <div class="enter-purpose" id="purposeInput">
     <button onclick="enterPurpose()">Enter</button>
   </div>
@@ -61,6 +61,36 @@
 
   </div>
   <div id="full-screen-overlay-two">
+    <div id="back-button-two" onclick="backToFirst()">
+      <button>Back</button>
+    </div>
+
+    <div id="overlay-log-two-box">
+      
+      <div class="confirm-title">
+        <h1>= Confirm Details: =</h1>
+      
+
+      </div>
+      <div id="amountDetailsBox">
+      <div class="amount-space">
+        <p>₱</p>
+        <h1 id="confirm-amount">Amount</h1>
+
+      </div>
+      <div class="details-space">
+        <h3>Gastos Details: </h3>
+        <h4 id="purpose-details">details here</h4>
+      </div>
+
+    </div>
+    <div id="confirm-btn" onclick="confirmLog()">
+     <button> Confirm</button>
+
+    </div>
+    
+
+    </div>
 
   </div>
     <script src="zcript.js"></script>

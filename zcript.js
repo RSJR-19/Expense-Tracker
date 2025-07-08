@@ -6,6 +6,11 @@ let getFullScreenOverlayTwo = document.getElementById("full-screen-overlay-two")
 let getPurposeInput = document.getElementById("purposeInput")
 let getPriceInput = document.getElementById("priceInput")
 let getProceedBtn = document.getElementById("proceedButton");
+let getBackBtn = document.getElementById("back-button");
+let getConfirmAmount = document.getElementById("confirm-amount");
+let getPurposeDetails = document.getElementById("purpose-details");
+let getPurposeAmountBox = document.getElementById("amountDetailsBox");
+
 let purposeInputValue = "";
 let priceInputValue = 0;
 let isPurposeGiven = false;
@@ -43,7 +48,11 @@ purposeInputValue = getPurposeInput.value;
 getPurposeInput.style.border = "3px solid black";
 if (purposeInputValue !== ""){
 isPurposeGiven = true;
+if (isPriceGiven === false){
 getPriceInput.focus();
+}
+
+
 }
 else {
   isPurposeGiven = false;
@@ -61,6 +70,11 @@ if (event.key === "Enter") {
 getPurposeInput.blur()
 }});
 
+getPriceInput.addEventListener("input", () => {
+  if (getPriceInput.value.length > 6) {
+    getPriceInput.value = getPriceInput.value.slice(0,6)}
+  });
+
 
 
 function enterPrice() {
@@ -68,6 +82,10 @@ priceInputValue = getPriceInput.value;
 getPriceInput.style.border = "3px black solid";
 if(priceInputValue > 0){
   isPriceGiven = true;
+  if (isPurposeGiven === false) {
+    getPurposeInput.focus()
+  }
+
   
 }
 else {
@@ -107,24 +125,57 @@ else {
 
 function logExpenseProceed(){
 if (isPurposeGiven === true && isPriceGiven === true){
+  setTimeout(() => {
   getFullScreenOverlayOne.style.display = "none";
   getFullScreenOverlayTwo.style.display = "flex";
-
-
+  priceInputValue = getPriceInput.value;
+  purposeInputValue = getPurposeInput.value;
+  proceedDetails()
+  },160)
 }
 
 else {
-  alert("bugs")
-}
-
   if(isPurposeGiven === false){
     getPurposeInput.focus();
   }
   else if (isPriceGiven === false){
     getPriceInput.focus()
   }
+}}
+
+
+function backToFirst() {
+  setTimeout(() => {
+getFullScreenOverlayTwo.style.display = "none";
+getFullScreenOverlayOne.style.display = "flex";
+getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
+validateProceed();
+  },160)
+
+
+
+
 }
 
+function proceedDetails() {
+  getConfirmAmount.innerHTML = priceInputValue;
+  getPurposeDetails.innerHTML = purposeInputValue;
 
 
 
+}
+
+function confirmLog() {
+  setTimeout (() => {
+getPurposeAmountBox.display //finish this later//
+
+
+  },160)
+
+
+
+
+}

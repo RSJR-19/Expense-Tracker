@@ -1,5 +1,6 @@
 let getMainWrapper = document.getElementById("main-wrapper")
 let getMainContainer = document.getElementById("main-container")
+let getTrackExpenses = document.getElementById("overlay-track-box")
 let getOverlayOne = document.getElementById("overlay-log-one")
 let getFullScreenOverlayOne = document.getElementById("full-screen-overlay-one")
 let getFullScreenOverlayTwo = document.getElementById("full-screen-overlay-two")
@@ -210,6 +211,17 @@ isConfirmed = true;
 
   },160)
 
+
+
+
+}
+
+function trackExpense() {
+  
+getMainContainer.style.display = "none";
+getFullScreenOverlayTwo.style.display = "none";
+getTrackExpenses.style.display = "flex";
+console.log("hi")
 
 
 

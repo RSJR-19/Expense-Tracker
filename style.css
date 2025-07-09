@@ -33,7 +33,7 @@ height: 250px;
 position: relative;
 border: 4px black solid;
 
-display: flex; /*change to flex*/
+display: none; /*change to flex*/
 
 
 }
@@ -481,16 +481,83 @@ transition: all 0.1s ease-in-out;
 display: none;
 }
 
-#overlay-track-box {
+#overlay-track-screen {
 height: 100vh;
 width: 100%;
 margin: 0;
-display: none;
 background-color:white;
+display: flex; /* change to none */
+flex-direction: column;
+gap: 20px;
+justify-content: center;
+align-items: center;
+}
+
+#back-button-track button {
+height: 50px;
+width: 100px ;
+font-family: "Comic Neue";
+font-size: large;
+background-color: rgb(246, 223, 11);
+border-radius: 10px;
+border:2.5px black solid;
+font-weight: bold;
+box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
+transition: all 0.1s ease-in-out;
+}
+
+#track-expense-box {
+height: 420px;
+width: 340px;
+border: 4px black solid;
+display: flex;
+flex-direction: column;
+}
+
+#track-box-title {
+display: flex;
+justify-content: center;
+font-family: "Comic Neue";
+height: 60px;
+border-bottom: 4px solid black;
+padding-bottom: 10px;
+}
+
+#track-expense-loglist {
+
+height: 280px;
+width: 100%;
+border-bottom: 4px black solid;
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+align-items: center;
+
+
+
 
 }
 
+#total-expense-day {
+font-family: "Comic Neue";
+display: flex;
+justify-content: center;
+align-items: center;
 
+
+}
+
+#sample-log {
+width: 95%;
+height: 60px;
+border: 4px solid black;
+border-radius: 10px;
+background-color: rgb(246, 223, 11);
+
+
+
+
+}
 
 
 

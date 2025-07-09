@@ -18,13 +18,14 @@ let getConfirmTitle = document.getElementById("confirm-title");
 let getConfirmDiv = document.getElementById("confirm-btn");
 let getTotalGastosTitle = document.getElementById("total-gastos-h3");
 let gastosCounter = 0;
-let totalGastos = 0;
 let isConfirmed = false;
 
 let purposeInputValue = "";
 let priceInputValue = 0;
 let isPurposeGiven = false;
 let isPriceGiven = false;
+
+localStorage.getItem("totalGastosSave");
 getPriceInput.placeholder = `Input Gastos price...` ;
  getPurposeInput.placeholder = `Input Gastos details...`;
  getPriceInput.style.border = "3px black solid";
@@ -215,7 +216,8 @@ getConfirmDiv.style.backgroundColor = "orange";
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
-totalGastos = totalGastos + parseInt(priceInputValue);
+let totalGastos = parseInt(priceInputValue) + localStorage.getItem(parseInt("totalGastosSave"));
+localStorage.setItem("totalGastosSave", totalGastos);
 gastosCounter ++;
 sendToTrack();
 
@@ -273,13 +275,15 @@ console.log(gastosDiv);
 trackLogList.appendChild(gastosDiv);
 
 
-//total gastos update later//
+
 
 
 
 
 
 }
+
+//localStorage.clear("totalGastosSave");//
 
 
 

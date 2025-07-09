@@ -1,6 +1,7 @@
 let getMainWrapper = document.getElementById("main-wrapper")
 let getMainContainer = document.getElementById("main-container")
 let getTrackExpenses = document.getElementById("overlay-track-screen")
+let trackLogList = document.getElementById("track-expense-loglist")
 let getOverlayOne = document.getElementById("overlay-log-one")
 let getFullScreenOverlayOne = document.getElementById("full-screen-overlay-one")
 let getFullScreenOverlayTwo = document.getElementById("full-screen-overlay-two")
@@ -14,7 +15,9 @@ let getPurposeAmountBox = document.getElementById("amountDetailsBox");
 let getTrackBtn = document.getElementById("track-btn")
 let getConfirmBtn = document.getElementById("confirm-log");
 let getConfirmTitle = document.getElementById("confirm-title");
-let getConfirmDiv = document.getElementById("confirm-btn")
+let getConfirmDiv = document.getElementById("confirm-btn");
+let gastosCounter = 0;
+
 let isConfirmed = false;
 
 let purposeInputValue = "";
@@ -45,6 +48,10 @@ function backToMain() {
     setTimeout(() => {
 getFullScreenOverlayOne.style.display = "none";
 getMainContainer.style.display = "flex";
+getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
 },160);
 }
 
@@ -207,6 +214,9 @@ getConfirmDiv.style.backgroundColor = "orange";
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
+gastosCounter ++;
+sendToTrack();
+
 
 
   },160)
@@ -231,12 +241,42 @@ function backMain() {
   setTimeout (() => {
 getTrackExpenses.style.display = "none";
 getMainContainer.style.display = "flex";
+getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
+validateProceed();
   }, 160)
 
 
 
 }
 
+function sendToTrack() {
+ let  gastosDiv = document.createElement("div");
+ gastosDiv.style.width = "95%";
+gastosDiv.style.height = "60px";
+gastosDiv.style.border = "3px solid black";
+gastosDiv.style.borderRadius = "10px";
+gastosDiv.style.backgroundColor = "rgb(246,223,11)";
+gastosDiv.innerHTML = `<h3>Gastos number ${gastosCounter}</h3>`;
+gastosDiv.style.display = "flex";
+gastosDiv.style.justifyContent = "center";
+gastosDiv.style.alignItems = "center";
+gastosDiv.style.fontFamily = "Comic Neue";
+gastosDiv.style.marginTop = "10px";
+console.log(gastosDiv);
+
+trackLogList.appendChild(gastosDiv);
+
+
+//total gastos update later//
+
+
+
+
+
+}
 
 
 

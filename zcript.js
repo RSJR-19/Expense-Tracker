@@ -16,8 +16,9 @@ let getTrackBtn = document.getElementById("track-btn")
 let getConfirmBtn = document.getElementById("confirm-log");
 let getConfirmTitle = document.getElementById("confirm-title");
 let getConfirmDiv = document.getElementById("confirm-btn");
+let getTotalGastosTitle = document.getElementById("total-gastos-h3");
 let gastosCounter = 0;
-
+let totalGastos = 0;
 let isConfirmed = false;
 
 let purposeInputValue = "";
@@ -214,6 +215,7 @@ getConfirmDiv.style.backgroundColor = "orange";
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
+totalGastos = totalGastos + parseInt(priceInputValue);
 gastosCounter ++;
 sendToTrack();
 
@@ -253,6 +255,7 @@ validateProceed();
 }
 
 function sendToTrack() {
+getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`;
  let  gastosDiv = document.createElement("div");
  gastosDiv.style.width = "95%";
 gastosDiv.style.height = "60px";

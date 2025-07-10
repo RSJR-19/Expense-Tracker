@@ -17,14 +17,13 @@ let getConfirmBtn = document.getElementById("confirm-log");
 let getConfirmTitle = document.getElementById("confirm-title");
 let getConfirmDiv = document.getElementById("confirm-btn");
 let getTotalGastosTitle = document.getElementById("total-gastos-h3");
-let gastosCounter = 0;
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
 let isPurposeGiven = false;
 let isPriceGiven = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
-//localStorage.removeItem("totalGastosLocalSave");//
+function resetLog(){localStorage.removeItem("totalGastosLocalSave");}
 
 console.log("total gastos loaded from localSave:", totalGastos)
 
@@ -227,7 +226,6 @@ getConfirmDiv.style.backgroundColor = "orange";
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
-gastosCounter ++;
 
 sendToTrack();
 
@@ -274,7 +272,7 @@ gastosDiv.style.height = "60px";
 gastosDiv.style.border = "3px solid black";
 gastosDiv.style.borderRadius = "10px";
 gastosDiv.style.backgroundColor = "rgb(246,223,11)";
-gastosDiv.innerHTML = `<h3>Gastos number ${gastosCounter}</h3>`;
+gastosDiv.innerHTML = `<p>Gastos here</p>`;
 gastosDiv.style.display = "flex";
 gastosDiv.style.justifyContent = "center";
 gastosDiv.style.alignItems = "center";

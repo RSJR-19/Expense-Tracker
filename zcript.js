@@ -276,10 +276,11 @@ createGastosDiv(purposeInputValue, priceInputValue);
 }
 
 function trackExpense() {
-  
+  setTimeout(() => {
 getMainContainer.style.display = "none";
 getFullScreenOverlayTwo.style.display = "none";
 getTrackExpenses.style.display = "flex";
+  },160);
 
 
 

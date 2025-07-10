@@ -9,6 +9,8 @@ html, body {
 
 
 
+
+
 body {
     background-color: white;
     height: 100dvh;
@@ -224,6 +226,12 @@ transition: all 0.1s ease-in-out;
 
 }
 
+.enter-purpose button:active {
+  box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
+}
+
 .overlay-log-one-purpose input::placeholder {
 font-style: italic;
 padding: 5px;
@@ -285,9 +293,12 @@ border:2.5px black solid;
 font-weight: bold;
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
+}
 
-
-
+.enter-price button:active {
+  box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
 }
 
 .overlay-log-one-price input::placeholder {
@@ -335,6 +346,14 @@ transition: all 0.1s ease-in-out;
 
 }
 
+.overlay-log-one-proceed button:active {
+  box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
+}
+
+
+
 #full-screen-overlay-two {
 height: 100vh;
 width: 100vw;
@@ -367,8 +386,6 @@ transition: all 0.1s ease-in-out;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
-
-
 }
 
 
@@ -460,6 +477,12 @@ box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
 }
 
+#confirm-log:active {
+box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
+}
+
 #amountDetailsBox {
 display:flex;
 flex-direction: column;
@@ -479,6 +502,12 @@ font-weight: bold;
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
 display: none;
+}
+
+#track-btn:active {
+box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
 }
 
 #overlay-track-screen {
@@ -504,6 +533,12 @@ border:2.5px black solid;
 font-weight: bold;
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
+}
+
+#back-button-track button:active {
+box-shadow: none;
+transition: 10ms;
+transform: translateY(2px);
 }
 
 #track-expense-box {
@@ -562,6 +597,7 @@ background-color: rgb(246, 223, 11);
 
 
 }
+
 
 
 

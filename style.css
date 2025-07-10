@@ -33,7 +33,7 @@ height: 250px;
 position: relative;
 border: 4px black solid;
 
-display: none; /*change to flex*/
+display:flex; /*change to flex*/
 
 
 }
@@ -486,7 +486,7 @@ height: 100vh;
 width: 100%;
 margin: 0;
 background-color:white;
-display: flex; /* change to none */
+display: none; /* change to none */
 flex-direction: column;
 gap: 20px;
 justify-content: center;

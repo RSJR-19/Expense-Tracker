@@ -23,9 +23,40 @@ let priceInputValue = 0;
 let isPurposeGiven = false;
 let isPriceGiven = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
-function resetLog(){localStorage.removeItem("totalGastosLocalSave");}
+let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 
-console.log("total gastos loaded from localSave:", totalGastos)
+function resetLog(){
+  localStorage.removeItem("totalGastosLocalSave");
+  localStorage.removeItem("gastosLogsArray");
+  totalGastos = 0;
+  gastosLogs = [];
+  getTotalGastosTitle.innerHTML = "Wala ka pang gastos..."
+  trackLogList.innerHTML = "";
+}
+
+gastosLogs.forEach((log) => {
+  createGastosDiv(log.purpose, log.amount);
+});
+
+
+
+
+function createGastosDiv(purpose, amount) {
+   let gastosDiv = document.createElement("div");
+  gastosDiv.style.width = "95%";
+  gastosDiv.style.height = "60px";
+  gastosDiv.style.border = "3px solid black";
+  gastosDiv.style.borderRadius = "10px";
+  gastosDiv.style.backgroundColor = "rgb(246,223,11)";
+  gastosDiv.innerHTML = `<p>${purpose} - ₱${amount}</p>`;
+  gastosDiv.style.display = "flex";
+  gastosDiv.style.justifyContent = "center";
+  gastosDiv.style.alignItems = "center";
+  gastosDiv.style.fontFamily = "Comic Neue";
+  gastosDiv.style.marginTop = "10px";
+  trackLogList.appendChild(gastosDiv);
+}
+
 
 if (totalGastos === 0){
   getTotalGastosTitle.innerHTML = `Wala ka pang gastos...`;
@@ -219,7 +250,13 @@ function confirmLog() {
   setTimeout (() => {
   totalGastos = totalGastos + parseInt(priceInputValue)
   localStorage.setItem("totalGastosLocalSave",totalGastos);
-console.log(localStorage.getItem("totalGastosLocalSave"))
+  getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`
+
+  gastosLogs.push({
+    purpose: purposeInputValue,
+    amount: parseInt(priceInputValue)
+  });
+  localStorage.setItem("gastosLogsArray", JSON.stringify(gastosLogs));
 document.getElementById("confirm-details-title").innerHTML = `= Gastos Logged! = `
 getConfirmTitle.style.backgroundColor = "orange";
 getConfirmDiv.style.backgroundColor = "orange";
@@ -227,7 +264,7 @@ getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
 
-sendToTrack();
+createGastosDiv(purposeInputValue, priceInputValue);
 
 
 

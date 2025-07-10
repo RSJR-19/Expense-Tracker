@@ -538,6 +538,9 @@ font-family: "Comic Neue";
 
 
 }
+#track-expense-loglist::-webkit-scrollbar {
+  display: none;
+}
 
 #total-expense-day {
 font-family: "Comic Neue";

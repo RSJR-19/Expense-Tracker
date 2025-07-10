@@ -19,13 +19,21 @@ let getConfirmDiv = document.getElementById("confirm-btn");
 let getTotalGastosTitle = document.getElementById("total-gastos-h3");
 let gastosCounter = 0;
 let isConfirmed = false;
-
 let purposeInputValue = "";
 let priceInputValue = 0;
 let isPurposeGiven = false;
 let isPriceGiven = false;
+let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
+//localStorage.removeItem("totalGastosLocalSave");//
 
-localStorage.getItem("totalGastosSave");
+console.log("total gastos loaded from localSave:", totalGastos)
+
+if (totalGastos === 0){
+  getTotalGastosTitle.innerHTML = `Wala ka pang gastos...`;
+}
+else {
+getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`;
+}
 getPriceInput.placeholder = `Input Gastos price...` ;
  getPurposeInput.placeholder = `Input Gastos details...`;
  getPriceInput.style.border = "3px black solid";
@@ -210,15 +218,17 @@ function proceedDetails() {
 
 function confirmLog() {
   setTimeout (() => {
+  totalGastos = totalGastos + parseInt(priceInputValue)
+  localStorage.setItem("totalGastosLocalSave",totalGastos);
+console.log(localStorage.getItem("totalGastosLocalSave"))
 document.getElementById("confirm-details-title").innerHTML = `= Gastos Logged! = `
 getConfirmTitle.style.backgroundColor = "orange";
 getConfirmDiv.style.backgroundColor = "orange";
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
-let totalGastos = parseInt(priceInputValue) + localStorage.getItem(parseInt("totalGastosSave"));
-localStorage.setItem("totalGastosSave", totalGastos);
 gastosCounter ++;
+
 sendToTrack();
 
 
@@ -283,7 +293,7 @@ trackLogList.appendChild(gastosDiv);
 
 }
 
-//localStorage.clear("totalGastosSave");//
+
 
 
 

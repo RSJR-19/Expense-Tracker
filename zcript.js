@@ -17,6 +17,9 @@ let getConfirmBtn = document.getElementById("confirm-log");
 let getConfirmTitle = document.getElementById("confirm-title");
 let getConfirmDiv = document.getElementById("confirm-btn");
 let getTotalGastosTitle = document.getElementById("total-gastos-h3");
+let openGastosDiv = document.getElementById("open-gastos-screen")
+let getOpenAmountValue = document.getElementById("open-amount-value");
+let getOpenPurposeValue = document.getElementById("open-purpose-value");
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -24,6 +27,7 @@ let isPurposeGiven = false;
 let isPriceGiven = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
+trackLogList.style.display = "flex";
 
 function resetLog(){
   localStorage.removeItem("totalGastosLocalSave");
@@ -34,14 +38,14 @@ function resetLog(){
   trackLogList.innerHTML = "";
 }
 
-gastosLogs.forEach((log) => {
-  createGastosDiv(log.purpose, log.amount);
+gastosLogs.forEach((log, index) => {
+  createGastosDiv(log.purpose, log.amount, index);
 });
 
 
 
 
-function createGastosDiv(purpose, amount) {
+function createGastosDiv(purpose, amount, divNumber) {
    let gastosDiv = document.createElement("div");
   gastosDiv.style.width = "95%";
   gastosDiv.style.height = "60px";
@@ -54,9 +58,39 @@ function createGastosDiv(purpose, amount) {
   gastosDiv.style.alignItems = "center";
   gastosDiv.style.fontFamily = "Comic Neue";
   gastosDiv.style.marginTop = "10px";
+  gastosDiv.classList.add("gastos-entry")
+  gastosDiv.onclick = openGastosDetails;
+  gastosDiv.id = divNumber;
   trackLogList.appendChild(gastosDiv);
+  console.log(gastosDiv);
+  console.log(gastosDiv.id);
+  let gastosCounter = gastosDiv.id;
+  console.log(gastosCounter)
 }
 
+function openGastosDetails(){
+//trackLogList.style.display = "none";
+//openGastosDiv.style.display = "flex";//
+
+
+
+
+}
+
+trackLogList.addEventListener("click", function(event) {
+const clickedDiv = event.target.closest(".gastos-entry");
+if (!clickedDiv) return;
+let index = Number(clickedDiv.id);
+let data = gastosLogs[index];
+
+if (data) {
+  setTimeout(() => {
+  trackLogList.style.display = "none";
+openGastosDiv.style.display = "flex";
+getOpenAmountValue.innerHTML = data.amount;
+getOpenPurposeValue.innerHTML = data.purpose;
+  },160)
+}});
 
 if (totalGastos === 0){
   getTotalGastosTitle.innerHTML = `Wala ka pang gastos...`;
@@ -252,10 +286,13 @@ function confirmLog() {
   localStorage.setItem("totalGastosLocalSave",totalGastos);
   getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`
 
+
   gastosLogs.push({
     purpose: purposeInputValue,
-    amount: parseInt(priceInputValue)
+    amount: parseInt(priceInputValue),
+    index: (gastosLogs.length)+ 1
   });
+  console.log(gastosLogs);
   localStorage.setItem("gastosLogsArray", JSON.stringify(gastosLogs));
 document.getElementById("confirm-details-title").innerHTML = `= Gastos Logged! = `
 getConfirmTitle.style.backgroundColor = "orange";
@@ -264,7 +301,7 @@ getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
 
-createGastosDiv(purposeInputValue, priceInputValue);
+createGastosDiv(purposeInputValue, priceInputValue, gastosLogs.length - 1);
 
 
 
@@ -280,6 +317,8 @@ function trackExpense() {
 getMainContainer.style.display = "none";
 getFullScreenOverlayTwo.style.display = "none";
 getTrackExpenses.style.display = "flex";
+  trackLogList.style.display = "flex";
+openGastosDiv.style.display = "none";
   },160);
 
 
@@ -320,16 +359,4 @@ console.log(gastosDiv);
 
 trackLogList.appendChild(gastosDiv);
 
-
-
-
-
-
-
-
 }
-
-
-
-
-

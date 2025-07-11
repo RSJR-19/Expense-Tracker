@@ -20,9 +20,11 @@ let getTotalGastosTitle = document.getElementById("total-gastos-h3");
 let openGastosDiv = document.getElementById("open-gastos-screen")
 let getOpenAmountValue = document.getElementById("open-amount-value");
 let getOpenPurposeValue = document.getElementById("open-purpose-value");
+let trackExpenseH1 = document.getElementById("trackExpenseH1");
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
+let isSettingBudget = false;
 let isPurposeGiven = false;
 let isPriceGiven = false;
 let isOpening = false;
@@ -340,6 +342,11 @@ function backMain() {
 openGastosDiv.style.display = "none";
 isOpening = false;
     }
+    else if (isSettingBudget === true) {
+      trackExpenseH1.innerHTML = "= Track Expense: ="
+getTotalGastosTitle.style.color = "black";
+isSettingBudget = false;
+    }
     else {
 getTrackExpenses.style.display = "none";
 getMainContainer.style.display = "flex";
@@ -372,5 +379,15 @@ gastosDiv.style.marginTop = "10px";
 console.log(gastosDiv);
 
 trackLogList.appendChild(gastosDiv);
+
+}
+
+function setBudget() {
+trackExpenseH1.innerHTML = "= Set Budget: ="
+getTotalGastosTitle.style.color = "white";
+isSettingBudget = true;
+
+
+
 
 }

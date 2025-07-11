@@ -25,6 +25,7 @@ let purposeInputValue = "";
 let priceInputValue = 0;
 let isPurposeGiven = false;
 let isPriceGiven = false;
+let isOpening = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 trackLogList.style.display = "flex";
@@ -85,6 +86,7 @@ let data = gastosLogs[index];
 
 if (data) {
   setTimeout(() => {
+  isOpening = true;
   trackLogList.style.display = "none";
 openGastosDiv.style.display = "flex";
 getOpenAmountValue.innerHTML = data.amount;
@@ -297,6 +299,7 @@ function confirmLog() {
 document.getElementById("confirm-details-title").innerHTML = `= Gastos Logged! = `
 getConfirmTitle.style.backgroundColor = "orange";
 getConfirmDiv.style.backgroundColor = "orange";
+getPurposeAmountBox.style.backgroundColor = "#f7cd8d"
 getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
@@ -328,6 +331,12 @@ openGastosDiv.style.display = "none";
 
 function backMain() {
   setTimeout (() => {
+    if (isOpening === true) {
+  trackLogList.style.display = "flex";
+openGastosDiv.style.display = "none";
+isOpening = false;
+    }
+    else {
 getTrackExpenses.style.display = "none";
 getMainContainer.style.display = "flex";
 getPurposeInput.value = "";
@@ -335,6 +344,7 @@ getPriceInput.value = "";
 isPriceGiven = false;
 isPurposeGiven = false;
 validateProceed();
+    }
   }, 160)
 
 
@@ -360,3 +370,5 @@ console.log(gastosDiv);
 trackLogList.appendChild(gastosDiv);
 
 }
+
+console.log(new Date().getDay())

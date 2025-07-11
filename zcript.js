@@ -23,6 +23,8 @@ let getOpenAmountValue = document.getElementById("open-amount-value");
 let getOpenPurposeValue = document.getElementById("open-purpose-value");
 let trackExpenseH1 = document.getElementById("trackExpenseH1");
 let setBudgetScreen = document.getElementById("set-budget-screen")
+let budgetInput = document.getElementById("input-budget-space");
+let confirmBudgetBtn = document.getElementById("confirm-budget-btn");
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -33,6 +35,9 @@ let isOpening = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 trackLogList.style.display = "flex";
+let isBudgetSet = false;
+validateConfirmBudget();
+
 
 function resetLog(){
   localStorage.removeItem("totalGastosLocalSave");
@@ -403,9 +408,44 @@ trackExpenseH1.innerHTML = "= Set Budget: =";
 trackLogList.style.display = "none";
 setBudgetScreen.style.display = "flex";
 getTotalGastosTitle.style.color = "white";
+budgetInput.value = "";
+isBudgetSet = false;
 isSettingBudget = true;
+}
+
+budgetInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    budgetForToday = budgetInput.value;
+    if (budgetForToday != 0 && budgetForToday > 0){
+    isBudgetSet = true;
+    budgetInput.blur();
+    validateConfirmBudget()
+    }
+    else {
+      budgetInput.value = "";
+      budgetInput.style.border = "3px red solid";
+      budgetInput.placeholder = "Budget cannot be 0 or less than 0..."
+      isBudgetSet = false;
+      budgetInput.blur();
+    }
+
+  }})
+
+  budgetInput.addEventListener("focus", function (event) {
+    budgetInput.style.border = "3px black solid";
+    budgetInput.placeholder = "Please input budget for today..."
+  })
+
+function validateConfirmBudget() {
+if (isBudgetSet === true) {
+confirmBudgetBtn.style.backgroundColor = "rgb(246,223,11)";
+}
+else {
+  confirmBudgetBtn.style.backgroundColor = "gray";
+}}
 
 
+function confirmBudget() {
 
 
 }

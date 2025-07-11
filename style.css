@@ -673,3 +673,13 @@ gap: 10px;
 
 
 }
+
+#set-budget-screen {
+display: none;
+background-color: #f7cd8d;
+border-bottom: 4px black solid;
+height: 280px;
+width: 100%;
+flex-direction: column;
+
+}

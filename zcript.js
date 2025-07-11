@@ -2,6 +2,7 @@ let getMainWrapper = document.getElementById("main-wrapper")
 let getMainContainer = document.getElementById("main-container")
 let getTrackExpenses = document.getElementById("overlay-track-screen")
 let trackLogList = document.getElementById("track-expense-loglist")
+let trackExpenseButtons = document.getElementById("trackExpenseButtons")
 let getOverlayOne = document.getElementById("overlay-log-one")
 let getFullScreenOverlayOne = document.getElementById("full-screen-overlay-one")
 let getFullScreenOverlayTwo = document.getElementById("full-screen-overlay-two")
@@ -21,6 +22,7 @@ let openGastosDiv = document.getElementById("open-gastos-screen")
 let getOpenAmountValue = document.getElementById("open-amount-value");
 let getOpenPurposeValue = document.getElementById("open-purpose-value");
 let trackExpenseH1 = document.getElementById("trackExpenseH1");
+let setBudgetScreen = document.getElementById("set-budget-screen")
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -60,7 +62,8 @@ function createGastosDiv(purpose, amount, divNumber, counter) {
   gastosDiv.style.justifyContent = "center";
   gastosDiv.style.alignItems = "center";
   gastosDiv.style.fontFamily = "Comic Neue";
-  gastosDiv.style.marginTop = "10px";
+  gastosDiv.style.marginTop = "5px";
+  gastosDiv.style.marginBottom = "5px";
   gastosDiv.classList.add("gastos-entry")
   gastosDiv.onclick = openGastosDetails;
   gastosDiv.id = divNumber;
@@ -89,12 +92,14 @@ let data = gastosLogs[index];
 if (data) {
   setTimeout(() => {
   isOpening = true;
+  trackExpenseButtons.style.display = "none";
   trackLogList.style.display = "none";
 openGastosDiv.style.display = "flex";
 getOpenAmountValue.innerHTML = data.amount;
 getOpenPurposeValue.innerHTML = data.purpose;
   },160)
 }});
+
 
 if (totalGastos === 0){
   getTotalGastosTitle.innerHTML = `Wala ka pang gastos...`;
@@ -119,6 +124,11 @@ getPriceInput.placeholder = `Input Gastos price...` ;
 getPurposeInput.placeholder = `Input Gastos details...`;
 getPriceInput.style.border = "3px black solid";
  getPurposeInput.style.border = "3px black solid";
+ getPriceInput.value = "";
+ getPurposeInput.value = "";
+ isPriceGiven = false;
+ isPurposeGiven = false;
+ validateProceed();
 
 },160);
 }
@@ -328,6 +338,9 @@ getFullScreenOverlayTwo.style.display = "none";
 getTrackExpenses.style.display = "flex";
   trackLogList.style.display = "flex";
 openGastosDiv.style.display = "none";
+setBudgetScreen.style.display = "none";
+getTotalGastosTitle.style.color = "black";
+ trackExpenseH1.innerHTML = "= Track Expense: ="
   },160);
 
 
@@ -340,9 +353,12 @@ function backMain() {
     if (isOpening === true) {
   trackLogList.style.display = "flex";
 openGastosDiv.style.display = "none";
+trackExpenseButtons.style.display = "flex";
 isOpening = false;
     }
     else if (isSettingBudget === true) {
+      trackLogList.style.display = "flex";
+setBudgetScreen.style.display = "none";
       trackExpenseH1.innerHTML = "= Track Expense: ="
 getTotalGastosTitle.style.color = "black";
 isSettingBudget = false;
@@ -383,7 +399,9 @@ trackLogList.appendChild(gastosDiv);
 }
 
 function setBudget() {
-trackExpenseH1.innerHTML = "= Set Budget: ="
+trackExpenseH1.innerHTML = "= Set Budget: =";
+trackLogList.style.display = "none";
+setBudgetScreen.style.display = "flex";
 getTotalGastosTitle.style.color = "white";
 isSettingBudget = true;
 
@@ -391,3 +409,5 @@ isSettingBudget = true;
 
 
 }
+
+//make a new blank div for set budget //

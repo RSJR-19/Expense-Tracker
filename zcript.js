@@ -39,21 +39,21 @@ function resetLog(){
   trackLogList.innerHTML = "";
 }
 
-gastosLogs.forEach((log, index) => {
-  createGastosDiv(log.purpose, log.amount, index);
+gastosLogs.forEach((log, index, counter) => {
+  createGastosDiv(log.purpose, log.amount, index, log.counter);
 });
 
 
 
 
-function createGastosDiv(purpose, amount, divNumber) {
+function createGastosDiv(purpose, amount, divNumber, counter) {
    let gastosDiv = document.createElement("div");
   gastosDiv.style.width = "95%";
   gastosDiv.style.height = "60px";
   gastosDiv.style.border = "3px solid black";
   gastosDiv.style.borderRadius = "10px";
   gastosDiv.style.backgroundColor = "rgb(246,223,11)";
-  gastosDiv.innerHTML = `<p>${purpose} - ₱${amount}</p>`;
+  gastosDiv.innerHTML = `<h4>Gastos #${counter} - ₱${amount}</h4>`;
   gastosDiv.style.display = "flex";
   gastosDiv.style.justifyContent = "center";
   gastosDiv.style.alignItems = "center";
@@ -111,6 +111,7 @@ getPriceInput.placeholder = `Input Gastos price...` ;
 function logExpense() {
 setTimeout(() => {
 getMainContainer.style.display = "none";
+getTrackExpenses.style.display = "none";
 getFullScreenOverlayOne.style.display = "flex";
 getPriceInput.placeholder = `Input Gastos price...` ;
 getPurposeInput.placeholder = `Input Gastos details...`;
@@ -284,6 +285,7 @@ function proceedDetails() {
 
 function confirmLog() {
   setTimeout (() => {
+  
   totalGastos = totalGastos + parseInt(priceInputValue)
   localStorage.setItem("totalGastosLocalSave",totalGastos);
   getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`
@@ -292,7 +294,8 @@ function confirmLog() {
   gastosLogs.push({
     purpose: purposeInputValue,
     amount: parseInt(priceInputValue),
-    index: (gastosLogs.length)+ 1
+    index: (gastosLogs.length)+ 1,
+    counter: (gastosLogs.length)+ 1
   });
   console.log(gastosLogs);
   localStorage.setItem("gastosLogsArray", JSON.stringify(gastosLogs));
@@ -304,7 +307,8 @@ getTrackBtn.style.display = "block";
 getConfirmBtn.style.display = "none";
 isConfirmed = true;
 
-createGastosDiv(purposeInputValue, priceInputValue, gastosLogs.length - 1);
+let lastLog = gastosLogs[gastosLogs.length-1]
+createGastosDiv(purposeInputValue, priceInputValue, gastosLogs.length - 1, lastLog.counter);
 
 
 
@@ -370,5 +374,3 @@ console.log(gastosDiv);
 trackLogList.appendChild(gastosDiv);
 
 }
-
-console.log(new Date().getDay())

@@ -547,6 +547,7 @@ width: 340px;
 border: 4px black solid;
 display: flex;
 flex-direction: column;
+
 }
 
 #track-box-title {
@@ -568,7 +569,7 @@ flex-direction: column;
 overflow-y: auto;
 align-items: center;
 font-family: "Comic Neue";
-
+background-color: #f7cd8d;
 
 
 
@@ -604,6 +605,7 @@ display: none;
 height: 280px;
 width: 100%;
 flex-direction: column;
+background-color: #f7cd8d;
 }
 
 .open-amount {
@@ -661,6 +663,13 @@ transform: translateY(2px);
 .gastos-entry {
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
+
+
+}
+
+#trackExpenseButtons {
+display: flex;
+gap: 10px;
 
 
 }

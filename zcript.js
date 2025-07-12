@@ -25,7 +25,9 @@ let trackExpenseH1 = document.getElementById("trackExpenseH1");
 let setBudgetScreen = document.getElementById("set-budget-screen")
 let budgetInput = document.getElementById("input-budget-space");
 let confirmBudgetBtn = document.getElementById("confirm-budget-btn");
-let dayTodayH1 = document.getElementById("dayTodayH1")
+let dayTodayH1 = document.getElementById("dayTodayH1");
+let budgetAmountH1 = document.getElementById("budget-amount-h1");
+let budgetAlreadySetScreen = document.getElementById("budget-already-set-screen")
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -35,10 +37,13 @@ let isPriceGiven = false;
 let isOpening = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
-let budgetRecord = JSON.parse(localStorage.getItem("budgetRecordArray")) || []; 
+let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
+let getBudgetStatus = getBudgetLocalStorage[0].status
 trackLogList.style.display = "flex";
 let isBudgetSet = false;
 validateConfirmBudget();
+console.log(getBudgetStatus)
+
 
 function pstingin(item){
   alert(localStorage.getItem(item))
@@ -131,10 +136,6 @@ function createGastosDiv(purpose, amount, divNumber, counter) {
 function openGastosDetails(){
 //trackLogList.style.display = "none";
 //openGastosDiv.style.display = "flex";//
-
-
-
-
 }
 
 trackLogList.addEventListener("click", function(event) {
@@ -404,6 +405,7 @@ getTotalGastosTitle.style.color = "black";
 
 function backMain() {
   setTimeout (() => {
+    budgetAlreadySetScreen.style.display = "none";
     if (isOpening === true) {
   trackLogList.style.display = "flex";
 openGastosDiv.style.display = "none";
@@ -453,6 +455,15 @@ trackLogList.appendChild(gastosDiv);
 }
 
 function setBudget() {
+if(isBudgetSet === true){
+trackLogList.style.display = "none";
+budgetAlreadySetScreen.style.display = "flex";
+trackExpenseH1.innerHTML = "= Today's Budget: =";
+getTotalGastosTitle.style.color = "white";
+
+
+}
+else {
 trackExpenseH1.innerHTML = "= Set Budget: =";
 trackLogList.style.display = "none";
 setBudgetScreen.style.display = "flex";
@@ -462,6 +473,7 @@ isBudgetSet = false;
 isSettingBudget = true;
 dayOfWeek()
 dayTodayH1.innerHTML = toDayIs;
+}
 }
 
 budgetInput.addEventListener("keydown", function (event) {
@@ -501,19 +513,20 @@ localStorage.removeItem("budgetRecordArray")
 
 function confirmBudget() {
 if(isBudgetSet === true) {
+setBudgetScreen.style.display = "none";
+budgetAlreadySetScreen.style.display = "flex";
 let budgetForToday = Number(budgetInput.value)
-
-let existingBudgetRecord = JSON.parse(localStorage.getItem("budgetRecordArray")) || [];
-existingBudgetRecord.push({
-  day: toDayIs,
+let budgetDetails = []
+budgetDetails.push({
+  date: toDayIs,
   budget: budgetForToday,
-  date: new Date().toLocaleDateString()
-});
+  status: true
+})
+let stringBudgetDetails = JSON.stringify(budgetDetails)
+localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
+console.log(budgetDetails)
+}}
 
-localStorage.setItem("budgetRecordArray", JSON.stringify(existingBudgetRecord))
 
-pstingin("budgetRecordArray")
-}
-}
 
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

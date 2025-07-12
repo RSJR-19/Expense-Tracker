@@ -716,6 +716,8 @@ padding: 0;
 height: 25%;
 display: flex;
 justify-content: center;
+
+
 }
 
 #input-budget input {
@@ -760,4 +762,13 @@ border:2.5px black solid;
 font-weight: bold;
 box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.412);
 transition: all 0.1s ease-in-out;
+}
+
+#budget-already-set-screen {
+display: none;
+background-color: #f7cd8d;
+border-bottom: 4px black solid;
+height: 280px;
+width: 100%;
+flex-direction: column;
 }

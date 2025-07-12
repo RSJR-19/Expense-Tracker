@@ -25,6 +25,7 @@ let trackExpenseH1 = document.getElementById("trackExpenseH1");
 let setBudgetScreen = document.getElementById("set-budget-screen")
 let budgetInput = document.getElementById("input-budget-space");
 let confirmBudgetBtn = document.getElementById("confirm-budget-btn");
+let dayTodayH1 = document.getElementById("dayTodayH1")
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -34,9 +35,57 @@ let isPriceGiven = false;
 let isOpening = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
+let budgetRecord = JSON.parse(localStorage.getItem("budgetRecordArray")) || []; 
 trackLogList.style.display = "flex";
 let isBudgetSet = false;
 validateConfirmBudget();
+
+function pstingin(item){
+  alert(localStorage.getItem(item))
+}
+
+
+
+function dayOfWeek() {
+let month = new Date().getMonth()
+ month = new Date().getMonth()
+if (month === 0) {
+  month = "Jan"
+}
+else if (month === 1) {
+  month = "Feb"
+}
+else if (month === 2) {
+  month = "Mar"
+}else if (month === 3) {
+  month = "Apr"
+}else if (month === 4) {
+  month = "May"
+}else if (month === 5) {
+  month = "Jun"
+}else if (month === 6) {
+  month = "Jul"
+}else if (month === 7) {
+  month = "Aug"
+}else if (month === 8) {
+  month = "Sep"
+}else if (month === 9) {
+  month = "Oct"
+}else if (month === 10) {
+  month = "Nov"
+}else if (month === 11) {
+  month = "Dec"
+}
+day = new Date().getDate()
+if (day < 10) {
+  day = `0${day}`
+}
+year = new Date().getFullYear()
+toDayIs = `${month} ${day}, ${year}`
+
+}
+
+
 
 
 function resetLog(){
@@ -411,6 +460,8 @@ getTotalGastosTitle.style.color = "white";
 budgetInput.value = "";
 isBudgetSet = false;
 isSettingBudget = true;
+dayOfWeek()
+dayTodayH1.innerHTML = toDayIs;
 }
 
 budgetInput.addEventListener("keydown", function (event) {
@@ -425,6 +476,7 @@ budgetInput.addEventListener("keydown", function (event) {
       budgetInput.value = "";
       budgetInput.style.border = "3px red solid";
       budgetInput.placeholder = "Budget cannot be 0 or less than 0..."
+      confirmBudgetBtn.style.backgroundColor = "grey";
       isBudgetSet = false;
       budgetInput.blur();
     }
@@ -434,6 +486,8 @@ budgetInput.addEventListener("keydown", function (event) {
   budgetInput.addEventListener("focus", function (event) {
     budgetInput.style.border = "3px black solid";
     budgetInput.placeholder = "Please input budget for today..."
+    isBudgetSet = false;
+    confirmBudgetBtn.style.backgroundColor = "gray"
   })
 
 function validateConfirmBudget() {
@@ -443,11 +497,23 @@ confirmBudgetBtn.style.backgroundColor = "rgb(246,223,11)";
 else {
   confirmBudgetBtn.style.backgroundColor = "gray";
 }}
-
+localStorage.removeItem("budgetRecordArray")
 
 function confirmBudget() {
+if(isBudgetSet === true) {
+let budgetForToday = Number(budgetInput.value)
 
+let existingBudgetRecord = JSON.parse(localStorage.getItem("budgetRecordArray")) || [];
+existingBudgetRecord.push({
+  day: toDayIs,
+  budget: budgetForToday,
+  date: new Date().toLocaleDateString()
+});
 
+localStorage.setItem("budgetRecordArray", JSON.stringify(existingBudgetRecord))
+
+pstingin("budgetRecordArray")
+}
 }
 
-//make a new blank div for set budget //
+//set day to localHst and finish confirmBudget() nice day Thanks be to God!//

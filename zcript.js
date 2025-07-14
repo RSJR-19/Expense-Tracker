@@ -27,7 +27,11 @@ let budgetInput = document.getElementById("input-budget-space");
 let confirmBudgetBtn = document.getElementById("confirm-budget-btn");
 let dayTodayH1 = document.getElementById("dayTodayH1");
 let budgetAmountH1 = document.getElementById("budget-amount-h1");
+let dayTotalBudget = document.getElementById("day-total-budget");
+let amountTotalBudget = document.getElementById("amount-total-budget");
 let budgetAlreadySetScreen = document.getElementById("budget-already-set-screen")
+let totalGastosBudgetScrn = document.getElementById("total-gastos-budget-screen")
+let budgetLeftH3 = document.getElementById("budget-left-h3");
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -38,11 +42,11 @@ let isOpening = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
-let getBudgetStatus = getBudgetLocalStorage[0].status
+
 trackLogList.style.display = "flex";
 let isBudgetSet = false;
 validateConfirmBudget();
-console.log(getBudgetStatus)
+
 
 
 function pstingin(item){
@@ -96,6 +100,8 @@ toDayIs = `${month} ${day}, ${year}`
 function resetLog(){
   localStorage.removeItem("totalGastosLocalSave");
   localStorage.removeItem("gastosLogsArray");
+  localStorage.removeItem("budgetLocalStorage");
+  budgetDetails = [];
   totalGastos = 0;
   gastosLogs = [];
   getTotalGastosTitle.innerHTML = "Wala ka pang gastos..."
@@ -460,6 +466,7 @@ trackLogList.style.display = "none";
 budgetAlreadySetScreen.style.display = "flex";
 trackExpenseH1.innerHTML = "= Today's Budget: =";
 getTotalGastosTitle.style.color = "white";
+showbudgetSetScreen()
 
 
 }
@@ -515,6 +522,7 @@ function confirmBudget() {
 if(isBudgetSet === true) {
 setBudgetScreen.style.display = "none";
 budgetAlreadySetScreen.style.display = "flex";
+trackExpenseH1.innerHTML = "= Today's Budget: =";
 let budgetForToday = Number(budgetInput.value)
 let budgetDetails = []
 budgetDetails.push({
@@ -524,6 +532,7 @@ budgetDetails.push({
 })
 let stringBudgetDetails = JSON.stringify(budgetDetails)
 localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
+showbudgetSetScreen()
 console.log(budgetDetails)
 }}
 
@@ -535,5 +544,26 @@ function recoverLocalStorage() {
 }
 
 
+function showbudgetSetScreen(){
+totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
+getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))
+let budgetAmountLocalStorage = ((getBudgetLocalStorage[getBudgetLocalStorage.length - 1]).budget);
+dayTotalBudget.innerHTML = `${toDayIs}: `
+amountTotalBudget.innerHTML = budgetAmountLocalStorage;
+if (totalGastos > 0) {
+totalGastosBudgetScrn.innerHTML = `Total Gastos: ₱${totalGastos}`
+}
+else {
+totalGastosBudgetScrn.innerHTML = `Wala ka pang gastos...`
+}
 
+let budgetLeft = budgetAmountLocalStorage - totalGastos;
+if (budgetLeft > 0) {
+budgetLeftH3.innerHTML = `Budget Left: ₱${budgetLeft}`
+}
+else {
+budgetLeftH3.style.textAlign = "center"
+budgetLeftH3.innerHTML = `Budget Left: ₱${budgetLeft}<br>(Sumosobra kana...)`
+}
+}
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

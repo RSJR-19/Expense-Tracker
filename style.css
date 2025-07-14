@@ -771,4 +771,45 @@ border-bottom: 4px black solid;
 height: 280px;
 width: 100%;
 flex-direction: column;
+
+}
+
+.total-budget-screen {
+height: 50%;
+font-family: "Comic Neue";
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 0;
+}
+
+.total-budget-screen h1 {
+font-size:100px;
+margin: 0;
+padding: 0;
+}
+
+.total-budget-screen h3 {
+margin-bottom: 0;
+padding: 0;
+}
+
+.pesoz {
+display: flex;
+margin: 0;
+height: 100px;
+
+}
+
+.gastos-budget-screen {
+height: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: "Comic Neue";
+flex-direction: column;
+gap: 10px;
+
+
 }

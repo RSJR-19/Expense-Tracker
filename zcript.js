@@ -527,6 +527,13 @@ localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
 console.log(budgetDetails)
 }}
 
+function recoverLocalStorage() {
+  localStorage.setItem("budgetLocalStorage", JSON.stringify([{ budget: 1000, status: true }]));
+  localStorage.setItem("totalGastosLocalSave", "0");
+  localStorage.setItem("gastosLogsArray", JSON.stringify([]));
+  alert("Local data recovered.");
+}
+
 
 
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

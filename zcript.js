@@ -44,7 +44,9 @@ let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
 
 trackLogList.style.display = "flex";
+
 let isBudgetSet = false;
+
 validateConfirmBudget();
 
 
@@ -460,6 +462,8 @@ trackLogList.appendChild(gastosDiv);
 
 }
 
+
+
 function setBudget() {
 if(isBudgetSet === true){
 trackLogList.style.display = "none";
@@ -534,6 +538,8 @@ let stringBudgetDetails = JSON.stringify(budgetDetails)
 localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
 showbudgetSetScreen()
 console.log(budgetDetails)
+
+
 }}
 
 function recoverLocalStorage() {
@@ -563,7 +569,7 @@ budgetLeftH3.innerHTML = `Budget Left: ₱${budgetLeft}`
 }
 else {
 budgetLeftH3.style.textAlign = "center"
-budgetLeftH3.innerHTML = `Budget Left: ₱${budgetLeft}<br>(Sumosobra kana...)`
+budgetLeftH3.innerHTML = `Budget Left: ${budgetLeft}<br>(Sumosobra kana...)`
 }
 }
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

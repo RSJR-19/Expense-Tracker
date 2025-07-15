@@ -39,15 +39,28 @@ let isSettingBudget = false;
 let isPurposeGiven = false;
 let isPriceGiven = false;
 let isOpening = false;
+let isBudgetSet = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
 
+
 trackLogList.style.display = "flex";
 
-let isBudgetSet = false;
+
+
+function isTodaySameAsStoredDate() {
+  let storedData = JSON.parse(localStorage.getItem("budgetLocalStorage")) || [];
+  if (storedData.length === 0) return false;
+
+  let storedDate = storedData[storedData.length - 1].date;
+  let today = dayOfWeek()
+
+  return storedDate === today;
+}
 
 validateConfirmBudget();
+dayOfWeek();
 
 
 
@@ -93,6 +106,7 @@ if (day < 10) {
 }
 year = new Date().getFullYear()
 toDayIs = `${month} ${day}, ${year}`
+return toDayIs
 
 }
 
@@ -103,9 +117,12 @@ function resetLog(){
   localStorage.removeItem("totalGastosLocalSave");
   localStorage.removeItem("gastosLogsArray");
   localStorage.removeItem("budgetLocalStorage");
+
   budgetDetails = [];
   totalGastos = 0;
   gastosLogs = [];
+  isBudgetSet = false;
+
   getTotalGastosTitle.innerHTML = "Wala ka pang gastos..."
   trackLogList.innerHTML = "";
 }
@@ -396,6 +413,7 @@ createGastosDiv(purposeInputValue, priceInputValue, gastosLogs.length - 1, lastL
 
 function trackExpense() {
   setTimeout(() => {
+budgetAlreadySetScreen.style.display = "none";
 getMainContainer.style.display = "none";
 getFullScreenOverlayTwo.style.display = "none";
 getTrackExpenses.style.display = "flex";
@@ -465,11 +483,7 @@ trackLogList.appendChild(gastosDiv);
 
 
 function setBudget() {
-if(isBudgetSet === true){
-trackLogList.style.display = "none";
-budgetAlreadySetScreen.style.display = "flex";
-trackExpenseH1.innerHTML = "= Today's Budget: =";
-getTotalGastosTitle.style.color = "white";
+if(isTodaySameAsStoredDate()){
 showbudgetSetScreen()
 
 
@@ -482,8 +496,9 @@ getTotalGastosTitle.style.color = "white";
 budgetInput.value = "";
 isBudgetSet = false;
 isSettingBudget = true;
-dayOfWeek()
-dayTodayH1.innerHTML = toDayIs;
+
+let today = dayOfWeek()
+dayTodayH1.innerHTML = today;
 }
 }
 
@@ -520,7 +535,7 @@ confirmBudgetBtn.style.backgroundColor = "rgb(246,223,11)";
 else {
   confirmBudgetBtn.style.backgroundColor = "gray";
 }}
-localStorage.removeItem("budgetRecordArray")
+
 
 function confirmBudget() {
 if(isBudgetSet === true) {
@@ -539,8 +554,10 @@ localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
 showbudgetSetScreen()
 console.log(budgetDetails)
 
+}
 
-}}
+
+}
 
 function recoverLocalStorage() {
   localStorage.setItem("budgetLocalStorage", JSON.stringify([{ budget: 1000, status: true }]));
@@ -551,6 +568,10 @@ function recoverLocalStorage() {
 
 
 function showbudgetSetScreen(){
+trackLogList.style.display = "none";
+budgetAlreadySetScreen.style.display = "flex";
+trackExpenseH1.innerHTML = "= Today's Budget: =";
+getTotalGastosTitle.style.color = "white";
 totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))
 let budgetAmountLocalStorage = ((getBudgetLocalStorage[getBudgetLocalStorage.length - 1]).budget);

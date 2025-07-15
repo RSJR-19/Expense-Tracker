@@ -59,6 +59,10 @@ function isTodaySameAsStoredDate() {
   return storedDate === today;
 }
 
+if (!isTodaySameAsStoredDate()) {
+  resetLog();
+}
+
 validateConfirmBudget();
 dayOfWeek();
 
@@ -377,6 +381,7 @@ function proceedDetails() {
 
 function confirmLog() {
   setTimeout (() => {
+
   
   totalGastos = totalGastos + parseInt(priceInputValue)
   localStorage.setItem("totalGastosLocalSave",totalGastos);

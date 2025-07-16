@@ -43,25 +43,23 @@ let isBudgetSet = false;
 let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
-
+let currentDayLog = JSON.parse(localStorage.getItem("currentDay"))||[];
 
 trackLogList.style.display = "flex";
 
+let dateToday = new Date().toLocaleDateString()
+if (dateToday !== currentDayLog) {
+resetLog()
 
-
-function isTodaySameAsStoredDate() {
-  let storedData = JSON.parse(localStorage.getItem("budgetLocalStorage")) || [];
-  if (storedData.length === 0) return false;
-
-  let storedDate = storedData[storedData.length - 1].date;
-  let today = dayOfWeek()
-
-  return storedDate === today;
+}
+else if (dateToday === currentDayLog) {
+console.log("testing")
 }
 
-if (!isTodaySameAsStoredDate()) {
-  resetLog();
-}
+dateToday = new Date().toLocaleDateString()
+localStorage.setItem("currentDay", JSON.stringify(dateToday))
+
+
 
 validateConfirmBudget();
 dayOfWeek();
@@ -201,6 +199,9 @@ getPriceInput.placeholder = `Input Gastos price...` ;
 
 function logExpense() {
 setTimeout(() => {
+let dateToday = new Date().toLocaleDateString()
+localStorage.setItem("currentDay", JSON.stringify(dateToday))
+
 getMainContainer.style.display = "none";
 getTrackExpenses.style.display = "none";
 getFullScreenOverlayOne.style.display = "flex";

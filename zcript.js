@@ -65,11 +65,19 @@ validateConfirmBudget();
 dayOfWeek();
 
 
+function isTodaySameAsStoredDate() {
+  let storedData = JSON.parse(localStorage.getItem("budgetLocalStorage")) || [];
+  if (storedData.length === 0) return false;
 
-function pstingin(item){
-  alert(localStorage.getItem(item))
+  let storedDate = storedData[storedData.length - 1].date;
+  let today = dayOfWeek()
+
+  return storedDate === today;
 }
 
+if (!isTodaySameAsStoredDate()) {
+  console.log("burp");
+}
 
 
 function dayOfWeek() {

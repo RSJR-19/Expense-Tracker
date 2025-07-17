@@ -325,7 +325,7 @@ let correctSfx = document.getElementById("correct-sound")
 priceInputValue = getPriceInput.value;
 getPriceInput.style.border = "3px black solid";
 if(priceInputValue > 0){
-  correctSfx.volume = 0.9;
+  correctSfx.volume = 1;
   correctSfx.play()
   isPriceGiven = true;
   if (isPurposeGiven === false) {

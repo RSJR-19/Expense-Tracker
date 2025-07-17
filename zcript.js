@@ -48,6 +48,8 @@ let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"
 let currentDayLog = JSON.parse(localStorage.getItem("currentDay"))||[];
 const statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false;
 
+
+
 trackLogList.style.display = "flex";
 
 let dateToday = new Date().toLocaleDateString()
@@ -192,6 +194,7 @@ let index = Number(clickedDiv.id);
 let data = gastosLogs[index];
 
 if (data) {
+  clickSound();
   setTimeout(() => {
   isOpening = true;
   trackExpenseButtons.style.display = "none";
@@ -277,9 +280,13 @@ isPurposeGiven = false;
 
 
 function enterPurpose() {
+let wrongSfx = document.getElementById("wrong-sound")
+let correctSfx = document.getElementById("correct-sound")
 purposeInputValue = getPurposeInput.value;
 getPurposeInput.style.border = "3px solid black";
 if (purposeInputValue !== ""){
+  correctSfx.volume = 0.9;
+  correctSfx.play()
 isPurposeGiven = true;
 if (isPriceGiven === false){
 getPriceInput.focus();
@@ -288,6 +295,8 @@ getPriceInput.focus();
 
 }
 else {
+  wrongSfx.volume = 0.4;
+  wrongSfx.play()
   isPurposeGiven = false;
 getPurposeInput.placeholder = `Please input valid detail * `
 getPurposeInput.style.border = "3px solid red";
@@ -311,9 +320,13 @@ getPriceInput.addEventListener("input", () => {
 
 
 function enterPrice() {
+  let wrongSfx = document.getElementById("wrong-sound")
+let correctSfx = document.getElementById("correct-sound")
 priceInputValue = getPriceInput.value;
 getPriceInput.style.border = "3px black solid";
 if(priceInputValue > 0){
+  correctSfx.volume = 0.9;
+  correctSfx.play()
   isPriceGiven = true;
   if (isPurposeGiven === false) {
     getPurposeInput.focus()
@@ -322,6 +335,8 @@ if(priceInputValue > 0){
   
 }
 else {
+   wrongSfx.volume = 0.4;
+  wrongSfx.play()
   isPriceGiven = false;
   getPriceInput.placeholder = `Please input valid amount`;
   getPriceInput.style.border = "3px red solid";
@@ -429,7 +444,26 @@ function proceedDetails() {
 function confirmLog() {
   setTimeout (() => {
 
+  let gastosSound = document.getElementById("gastos-sound");
+  let bgMusic = document.getElementById("bg-music");
+
+  setTimeout(() => {
+
+  if (!bgMusic.paused) {
+    bgMusic.pause();
+  }
+
+  gastosSound.volume = 1;
+  gastosSound.play();
+
+  gastosSound.onended = function () {
+    if (!isMusicStarted) return;
+    bgMusic.play();
+  };
+  } ,120)
   
+
+
   totalGastos = totalGastos + parseInt(priceInputValue)
   localStorage.setItem("totalGastosLocalSave",totalGastos);
   getTotalGastosTitle.innerHTML = `Total Gastos : ₱${totalGastos}`
@@ -539,7 +573,6 @@ trackLogList.appendChild(gastosDiv);
 
 
 function setBudget() {
-console.log("yes")
 isSettingBudget = true;
 const budgetCheckScreen = document.getElementById("budget-check-screen")
 budgetCheckScreen.style.display = "none";
@@ -565,18 +598,24 @@ dayTodayH1.innerHTML = today;
 }
 
 budgetInput.addEventListener("keydown", function (event) {
+  let wrongSfx = document.getElementById("wrong-sound")
+let correctSfx = document.getElementById("correct-sound")
   if (event.key === "Enter") {
     budgetForToday = budgetInput.value;
     if (budgetForToday != 0 && budgetForToday > 0){
+      correctSfx.volume = 0.9
+      correctSfx.play()
     isBudgetSet = true;
     budgetInput.blur();
     validateConfirmBudget()
     }
     else {
+      wrongSfx.volume = 0.4
+      wrongSfx.play()
       budgetInput.value = "";
       budgetInput.style.border = "3px red solid";
       budgetInput.placeholder = "Budget cannot be 0 or less than 0..."
-      confirmBudgetBtn.style.backgroundColor = "grey";
+      confirmBudgetBtn.style.backgroundColor = "rgb(195, 192, 168)";
       isBudgetSet = false;
       budgetInput.blur();
     }
@@ -587,7 +626,7 @@ budgetInput.addEventListener("keydown", function (event) {
     budgetInput.style.border = "3px black solid";
     budgetInput.placeholder = "Please input budget for today..."
     isBudgetSet = false;
-    confirmBudgetBtn.style.backgroundColor = "gray"
+    confirmBudgetBtn.style.backgroundColor = "rgb(195, 192, 168)"
   })
 
 function validateConfirmBudget() {
@@ -595,7 +634,9 @@ if (isBudgetSet === true) {
 confirmBudgetBtn.style.backgroundColor = "rgb(246,223,11)";
 }
 else {
+  let wrongSfx = document.getElementById("wrong-sound")
   confirmBudgetBtn.style.backgroundColor = "rgb(195, 192, 168)";
+ 
 }}
 
 
@@ -663,11 +704,47 @@ let isMusicStarted = false;
 function startBgMusic() {
 if (!isMusicStarted) {
 let bgMusic = document.getElementById("bg-music")
-bgMusic.volume = 0.5;
+bgMusic.volume = 0.3;
 bgMusic.play()
 isMusicStarted = true;
 }
 }
 
 document.addEventListener("click", startBgMusic);
+
+function clickSound() {
+let clickEffect = document.getElementById("button-click-music");
+clickEffect.volume = 0.4;
+clickEffect.play()
+
+
+}
+
+function backConfirmScreen() {
+  if (isConfirmed === false){
+  setTimeout(() => {
+getFullScreenOverlayTwo.style.display = "none";
+getFullScreenOverlayOne.style.display = "flex";
+getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
+validateProceed();
+  },160)}
+  else if (isConfirmed === true) {
+    setTimeout (() => {
+    getFullScreenOverlayTwo.style.display = "none";
+    getMainContainer.style.display = "flex";
+    getPurposeInput.value = "";
+getPriceInput.value = "";
+isPriceGiven = false;
+isPurposeGiven = false;
+isConfirmed = false;
+validateProceed();
+    },160)}
+
+
+
+  }
+
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

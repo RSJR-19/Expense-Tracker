@@ -11,6 +11,10 @@
 </head>
   <body>
     <audio id="bg-music" src="bgSong.mp3" loop></audio>
+    <audio src="click.mp3" id="button-click-music"></audio>
+    <audio src="correct.mp3" id="correct-sound"></audio>
+    <audio src="wrong.mp3" id="wrong-sound"></audio>
+    <audio src="gastos.mp3" id="gastos-sound"></audio>
     <div class="main-container" id="main-container">
       <div class="main-wrapper" id="main-wrapper">
         <div class="main-title">
@@ -20,8 +24,8 @@
 
         </div>
         <div class="main-buttons">
-          <button onclick="checkStatus()"> Log Expense</button>
-          <button onclick="trackExpense()"> Track Expenses</button>
+          <button onclick="checkStatus(); clickSound()" > Log Expense</button>
+          <button onclick="trackExpense(); clickSound()"> Track Expenses</button>
 
 
         </div>
@@ -30,7 +34,7 @@
       </div>
   </div>
   <div id="full-screen-overlay-one">
-  <div id="back-button" onclick="backToMain()">
+  <div id="back-button" onclick="backToMain(); clickSound()">
     <button> Back</button>
 
   </div>
@@ -40,30 +44,30 @@
 </div>
 <div class="overlay-log-one-purpose">
   <p>  Gastos details: </p>
-  <input type="text" placeholder="Input Gastos details..." id="purposeInput"  autocomplete="off" >
+  <input type="text" placeholder="Input Gastos details..." id="purposeInput"  autocomplete="off">
   <div class="enter-purpose" id="purposeInput">
-    <button onclick="enterPurpose()">Enter</button>
+    <button onclick="enterPurpose(); clickSound()">Enter</button>
   </div>
   
 </div>
 <div class="overlay-log-one-price">
   <p>  Gastos price: </p>
-  <input type="number" placeholder="Input Gastos price..." id="priceInput">
+  <input type="number" placeholder="Input Gastos price..." id="priceInput" >
   <div class="enter-price" id="priceInput">
-    <button onclick="enterPrice()">Enter</button>
+    <button onclick="enterPrice(); clickSound()">Enter</button>
   </div>
   
 </div>
 <div class="overlay-log-one-proceed">
   <p><em>Note: Press "Enter" after each input to proceed!</em></p>
-  <button id="proceedButton" onclick="logExpenseProceed()">Proceed</button>
+  <button id="proceedButton" onclick="logExpenseProceed(); clickSound()">Proceed</button>
   
 </div>
   </div>
 
   </div>
   <div id="full-screen-overlay-two">
-    <div id="back-button-two" onclick="backToFirst()">
+    <div id="back-button-two" onclick="backConfirmScreen(); clickSound()">
       <button>Back</button>
     </div>
 
@@ -88,8 +92,8 @@
     </div>
   
     <div id="confirm-btn" >
-     <button onclick="confirmLog()" id="confirm-log"> Confirm</button>
-     <button id="track-btn" onclick="trackExpense()"> Track Expense</button>
+     <button onclick="confirmLog(); clickSound()" id="confirm-log"> Confirm</button>
+     <button id="track-btn" onclick="trackExpense(); clickSound()"> Track Expense</button>
 
     </div>
     
@@ -101,7 +105,7 @@
   </div>
    <div id="overlay-track-screen">
     <div id="back-button-track">
-      <button onclick="backMain()"> Back</button>
+      <button onclick="backMain(); clickSound()"> Back</button>
     </div>
     <div id="track-expense-box">
       <div id="track-box-title">
@@ -135,7 +139,7 @@
           
         </div>
         <div id="confirm-budget">
-          <button onclick="confirmBudget()" id="confirm-budget-btn">Confirm</button>
+          <button onclick="confirmBudget(); clickSound()" id="confirm-budget-btn">Confirm</button>
 
         </div>
         
@@ -164,9 +168,9 @@
 
     </div>
     <div id="trackExpenseButtons">
-    <button onclick="checkStatus()">Gastos ulit</button>
+    <button onclick="checkStatus(); clickSound()">Gastos ulit</button>
  <!--<button onclick="resetLog()">Reset</button>-->
- <button onclick="setBudget()">Budget</button>
+ <button onclick="setBudget(); clickSound()">Budget</button>
  <!--<button onclick="recoverLocalStorage()"> recover</button>-->
 
     </div>
@@ -175,12 +179,12 @@
     <script src="zcript.js"></script>
   </body>
   <div id="budget-check-screen">
-    <button id="back-check-budget" onclick="closeBudgetCheck()">Back</button>
+    <button id="back-check-budget" onclick="closeBudgetCheck(); clickSound()">Back</button>
     <div class="budget-check-box">
       <h3>You haven’t set your budget for today. Would you like to set it now?</h3>
       <div class="buttons-budget-check">
-        <button onclick="setBudget()">Set Budget</button>
-        <button onclick="logExpense()">Gastos na</button>
+        <button onclick="setBudget(); clickSound()">Set Budget</button>
+        <button onclick="logExpense(); clickSound()">Gastos na</button>
 
       </div>
 

@@ -50,8 +50,6 @@ const statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false
 
 trackLogList.style.display = "flex";
 
-console.log(statusLog)
-
 let dateToday = new Date().toLocaleDateString()
 if (dateToday !== currentDayLog) {
 resetLog()
@@ -151,12 +149,20 @@ gastosLogs.forEach((log, index, counter) => {
 
 
 function createGastosDiv(purpose, amount, divNumber, counter) {
+  let monthDate = new Date().getMonth()
+  let dayDate = new Date ().getDate()
+  let specialDay = (monthDate === 4 && dayDate === 22)
    let gastosDiv = document.createElement("div");
   gastosDiv.style.width = "95%";
   gastosDiv.style.height = "60px";
   gastosDiv.style.border = "3px solid black";
   gastosDiv.style.borderRadius = "10px";
+  if(!specialDay){
   gastosDiv.style.backgroundColor = "rgb(246,223,11)";
+  }
+  else {
+  gastosDiv.style.backgroundColor = "rgba(11, 246, 226, 1)";
+  }
   gastosDiv.innerHTML = `<h4>Gastos #${counter} - ₱${amount}</h4>`;
   gastosDiv.style.display = "flex";
   gastosDiv.style.justifyContent = "center";
@@ -650,4 +656,18 @@ budgetLeftH3.style.textAlign = "center"
 budgetLeftH3.innerHTML = `Budget Left: ${budgetLeft}<br>(Sumosobra kana...)`
 }
 }
+
+
+let isMusicStarted = false;
+
+function startBgMusic() {
+if (!isMusicStarted) {
+let bgMusic = document.getElementById("bg-music")
+bgMusic.volume = 0.5;
+bgMusic.play()
+isMusicStarted = true;
+}
+}
+
+document.addEventListener("click", startBgMusic);
 //set day to localHst and finish confirmBudget() nice day Thanks be to God!//

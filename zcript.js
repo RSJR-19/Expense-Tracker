@@ -547,7 +547,7 @@ if (isBudgetSet === true) {
 confirmBudgetBtn.style.backgroundColor = "rgb(246,223,11)";
 }
 else {
-  confirmBudgetBtn.style.backgroundColor = "gray";
+  confirmBudgetBtn.style.backgroundColor = "rgb(195, 192, 168)";
 }}
 
 

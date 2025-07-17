@@ -31,7 +31,9 @@ let dayTotalBudget = document.getElementById("day-total-budget");
 let amountTotalBudget = document.getElementById("amount-total-budget");
 let budgetAlreadySetScreen = document.getElementById("budget-already-set-screen")
 let totalGastosBudgetScrn = document.getElementById("total-gastos-budget-screen")
+const budgetCheckScreen = document.getElementById("budget-check-screen")
 let budgetLeftH3 = document.getElementById("budget-left-h3");
+const backCheckBudgetBtn = document.getElementById("back-check-budget")
 let isConfirmed = false;
 let purposeInputValue = "";
 let priceInputValue = 0;
@@ -44,7 +46,8 @@ let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
 let currentDayLog = JSON.parse(localStorage.getItem("currentDay"))||[];
-let statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false;
+const statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false;
+
 trackLogList.style.display = "flex";
 
 console.log(statusLog)
@@ -210,6 +213,8 @@ getPriceInput.placeholder = `Input Gastos price...` ;
 
 function logExpense() {
 setTimeout(() => {
+const budgetCheckScreen = document.getElementById("budget-check-screen")
+budgetCheckScreen.style.display = "none"
 let dateToday = new Date().toLocaleDateString()
 localStorage.setItem("currentDay", JSON.stringify(dateToday))
 
@@ -228,6 +233,30 @@ getPriceInput.style.border = "3px black solid";
 
 },160);
 }
+
+function checkStatus() {
+setTimeout(()=>{
+  const statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false;
+  if (statusLog === true) {
+    logExpense()
+  }
+  else {
+    const budgetCheckScreen = document.getElementById("budget-check-screen")
+    budgetCheckScreen.style.display = "flex"
+
+  }
+
+
+},160)
+}
+
+function closeBudgetCheck() {
+const budgetCheckScreen = document.getElementById("budget-check-screen")
+budgetCheckScreen.style.display = "none"
+
+}
+
+
 
 function backToMain() {
     setTimeout(() => {
@@ -430,6 +459,7 @@ createGastosDiv(purposeInputValue, priceInputValue, gastosLogs.length - 1, lastL
 
 function trackExpense() {
   setTimeout(() => {
+ trackExpenseButtons.style.display = "flex";
 budgetAlreadySetScreen.style.display = "none";
 getMainContainer.style.display = "none";
 getFullScreenOverlayTwo.style.display = "none";
@@ -460,9 +490,11 @@ isOpening = false;
 setBudgetScreen.style.display = "none";
       trackExpenseH1.innerHTML = "= Track Expense: ="
 getTotalGastosTitle.style.color = "black";
+ trackExpenseButtons.style.display = "flex";
 isSettingBudget = false;
     }
-    else {
+
+    else  {
 getTrackExpenses.style.display = "none";
 getMainContainer.style.display = "flex";
 getPurposeInput.value = "";
@@ -470,6 +502,7 @@ getPriceInput.value = "";
 isPriceGiven = false;
 isPurposeGiven = false;
 validateProceed();
+backToFirst = false;
     }
   }, 160)
 
@@ -500,12 +533,18 @@ trackLogList.appendChild(gastosDiv);
 
 
 function setBudget() {
+console.log("yes")
+isSettingBudget = true;
+const budgetCheckScreen = document.getElementById("budget-check-screen")
+budgetCheckScreen.style.display = "none";
+
 if(isTodaySameAsStoredDate()){
 showbudgetSetScreen()
-
-
 }
 else {
+getTrackExpenses.style.display = "flex"
+getMainContainer.style.display = "none";
+ trackExpenseButtons.style.display = "none";
 trackExpenseH1.innerHTML = "= Set Budget: =";
 trackLogList.style.display = "none";
 setBudgetScreen.style.display = "flex";

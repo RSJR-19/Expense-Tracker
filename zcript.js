@@ -44,8 +44,10 @@ let totalGastos = Number(localStorage.getItem("totalGastosLocalSave")) || 0;
 let gastosLogs = JSON.parse(localStorage.getItem("gastosLogsArray")) || [];
 let getBudgetLocalStorage = JSON.parse(localStorage.getItem("budgetLocalStorage"))||[];
 let currentDayLog = JSON.parse(localStorage.getItem("currentDay"))||[];
-
+let statusLog = JSON.parse(localStorage.getItem("budgetStatusCheck")) || false;
 trackLogList.style.display = "flex";
+
+console.log(statusLog)
 
 let dateToday = new Date().toLocaleDateString()
 if (dateToday !== currentDayLog) {
@@ -127,6 +129,7 @@ function resetLog(){
   localStorage.removeItem("totalGastosLocalSave");
   localStorage.removeItem("gastosLogsArray");
   localStorage.removeItem("budgetLocalStorage");
+  localStorage.removeItem("budgetStatusCheck");
 
   budgetDetails = [];
   totalGastos = 0;
@@ -565,8 +568,9 @@ budgetDetails.push({
 })
 let stringBudgetDetails = JSON.stringify(budgetDetails)
 localStorage.setItem("budgetLocalStorage", stringBudgetDetails)
+localStorage.setItem("budgetStatusCheck", true)
 showbudgetSetScreen()
-console.log(budgetDetails)
+
 
 }
 

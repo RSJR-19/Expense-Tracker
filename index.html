@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="icon" href="logo.ico" type="image/x-icon">
+<link rel="icon" href="rsjr_logo.png" type="image/png">
 <link rel="manifest" href="manifest.json">
 </head>
   <body>
@@ -178,9 +178,7 @@
     </div>
 
     </div>
-    <script src="zcript.js"></script>
-  </body>
-  <div id="budget-check-screen">
+    <div id="budget-check-screen">
     <button id="back-check-budget" onclick="closeBudgetCheck(); clickSound()">Back</button>
     <div class="budget-check-box">
       <h3>You haven’t set your budget for today. Would you like to set it now?</h3>
@@ -192,8 +190,18 @@
 
 
     </div>
-  
-
   </div>
+    <script src="zcript.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+        .then(() => console.log("mission saksis"))
+        .catch(error =>
+    console.error("ayaw luds kasi:" , error));
+      }
+      </script>
+
+  </body>
+  
 
 </html>

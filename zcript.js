@@ -376,6 +376,8 @@ else {
 }
 }
 
+
+
 function logExpenseProceed(){
 if (isPurposeGiven === true && isPriceGiven === true){
   setTimeout(() => {

@@ -111,6 +111,7 @@ transition: all 0.1s ease-in-out;
 }
 
 html button:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -152,6 +153,7 @@ transition: all 0.1s ease-in-out;
 
 }
 #back-button button:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -235,6 +237,7 @@ transition: all 0.1s ease-in-out;
 }
 
 .enter-purpose button:active {
+  color: black;
   box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -305,6 +308,7 @@ transition: all 0.1s ease-in-out;
 }
 
 .enter-price button:active {
+  color: black;
   box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -346,6 +350,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(195, 192, 168);
 border-radius: 10px;
 border:2.5px black solid;
@@ -356,6 +361,7 @@ transition: all 0.1s ease-in-out;
 }
 
 .overlay-log-one-proceed button:active {
+  color: black;
   box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -383,6 +389,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -392,6 +399,7 @@ transition: all 0.1s ease-in-out;
 
 }
 #back-button-two button:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -478,6 +486,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -487,6 +496,7 @@ transition: all 0.1s ease-in-out;
 }
 
 #confirm-log:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -504,6 +514,7 @@ height: 50px;
 width: 170px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -514,6 +525,7 @@ display: none;
 }
 
 #track-btn:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -536,6 +548,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -545,6 +558,7 @@ transition: all 0.1s ease-in-out;
 }
 
 #back-button-track button:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -663,12 +677,14 @@ border-bottom: 3px black dashed;
 #open-details h4 {
 margin-top: 0;
   text-align: center;
+  color: black;
 
 }
 
 
 
 .gastos-entry:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
@@ -739,6 +755,7 @@ position: absolute;
 .enter-budget button {
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -760,6 +777,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -853,6 +871,7 @@ height: 50px;
 width: 120px ;
 font-family: "Comic Neue";
 font-size: large;
+color:black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -872,6 +891,7 @@ gap: 20px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -888,6 +908,7 @@ margin-bottom: 280px;
 width: 120px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -897,18 +918,21 @@ transition: all 0.1s ease-in-out;
 }
 
 #trackExpenseButtons button:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
 }
 
 #confirm-budget-btn:active{
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);
 }
 
 #back-check-budget:active {
+  color: black;
 box-shadow: none;
 transition: 10ms;
 transform: translateY(2px);

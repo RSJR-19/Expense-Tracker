@@ -285,7 +285,8 @@ let correctSfx = document.getElementById("correct-sound")
 purposeInputValue = getPurposeInput.value;
 getPurposeInput.style.border = "3px solid black";
 if (purposeInputValue !== ""){
-  correctSfx.volume = 0.9;
+  correctSfx.volume = 1;
+  correctSfx.currentTime = 0;
   correctSfx.play()
 isPurposeGiven = true;
 if (isPriceGiven === false){
@@ -295,7 +296,8 @@ getPriceInput.focus();
 
 }
 else {
-  wrongSfx.volume = 0.4;
+  wrongSfx.volume = 0.5;
+  wrongSfx.currentTime = 0;
   wrongSfx.play()
   isPurposeGiven = false;
 getPurposeInput.placeholder = `Please input valid detail * `
@@ -326,6 +328,7 @@ priceInputValue = getPriceInput.value;
 getPriceInput.style.border = "3px black solid";
 if(priceInputValue > 0){
   correctSfx.volume = 1;
+  correctSfx.currentTime = 0;
   correctSfx.play()
   isPriceGiven = true;
   if (isPurposeGiven === false) {
@@ -335,7 +338,8 @@ if(priceInputValue > 0){
   
 }
 else {
-   wrongSfx.volume = 0.4;
+   wrongSfx.volume = 0.5;
+   wrongSfx.currentTime = 0;
   wrongSfx.play()
   isPriceGiven = false;
   getPriceInput.placeholder = `Please input valid amount`;
@@ -454,6 +458,7 @@ function confirmLog() {
   }
 
   gastosSound.volume = 1;
+  gastosSound.currentTime = 0;
   gastosSound.play();
 
   gastosSound.onended = function () {
@@ -572,6 +577,7 @@ trackLogList.appendChild(gastosDiv);
 
 
 
+
 function setBudget() {
 isSettingBudget = true;
 const budgetCheckScreen = document.getElementById("budget-check-screen")
@@ -603,14 +609,16 @@ let correctSfx = document.getElementById("correct-sound")
   if (event.key === "Enter") {
     budgetForToday = budgetInput.value;
     if (budgetForToday != 0 && budgetForToday > 0){
-      correctSfx.volume = 0.9
+      correctSfx.volume = 1;
+      correctSfx.currentTime = 0;
       correctSfx.play()
     isBudgetSet = true;
     budgetInput.blur();
     validateConfirmBudget()
     }
     else {
-      wrongSfx.volume = 0.4
+      wrongSfx.volume = 0.5;
+      wrongSfx.currentTime = 0;
       wrongSfx.play()
       budgetInput.value = "";
       budgetInput.style.border = "3px red solid";
@@ -704,7 +712,7 @@ let isMusicStarted = false;
 function startBgMusic() {
 if (!isMusicStarted) {
 let bgMusic = document.getElementById("bg-music")
-bgMusic.volume = 0.3;
+bgMusic.volume = 0.4;
 bgMusic.play()
 isMusicStarted = true;
 }
@@ -715,6 +723,7 @@ document.addEventListener("click", startBgMusic);
 function clickSound() {
 let clickEffect = document.getElementById("button-click-music");
 clickEffect.volume = 0.4;
+clickEffect.currentTime = 0;
 clickEffect.play()
 
 

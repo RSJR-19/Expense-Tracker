@@ -100,6 +100,7 @@ height: 35%;
 width: 50%;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -141,6 +142,7 @@ height: 50px;
 width: 100px ;
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -220,6 +222,7 @@ border-radius: 10px;
 
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -292,6 +295,7 @@ border-radius: 10px;
 
 font-family: "Comic Neue";
 font-size: large;
+color: black;
 background-color: rgb(246, 223, 11);
 border-radius: 10px;
 border:2.5px black solid;
@@ -829,7 +833,7 @@ display: none;
 
 .budget-check-box {
 height: 200px;
-width: 350px;
+width: 340px;
 background-color: white;
 border: solid 4px black;
 border-radius: 12px;

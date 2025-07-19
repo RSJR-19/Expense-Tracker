@@ -1,18 +1,18 @@
-const CACHE_NAME = "gastos_tracker_v1";
+const CACHE_NAME = "gastos_tracker_v2";
 const FILES_TO_CACHE = [
-    "/",
-    "/index.html",
-    "/style.css",
-    "/zcript.js",
-    "/rsjr_logo.png",
-    "/bgm-the-winner-is-devotchka.mp3",
-    "/bgSong.mp3",
-    "/buttonNew.mp3",
-    "/click.mp3",
-    "/correct.mp3",
-    "/correct2.mp3",
-    "/gastos.mp3",
-    "/wrong.mp3"
+    "./",
+    "./index.html",
+    "./style.css",
+    "./zcript.js",
+    "./rsjr_logo.png",
+    "./bgm-the-winner-is-devotchka.mp3",
+    "./bgSong.mp3",
+    "./buttonNew.mp3",
+    "./click.mp3",
+    "./correct.mp3",
+    "./correct2.mp3",
+    "./gastos.mp3",
+    "./wrong.mp3"
 ];
 
 
